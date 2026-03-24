@@ -1,2 +1,2 @@
-# Bridge-of-Generations-The-Polish-Diaspora-in-Kazakhstan
+# Bridge of generations: The Polish diaspora in Kazakhstan
 Most pokoleń: diaspora polska w Kazachstanie
