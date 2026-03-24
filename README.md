@@ -1,2 +1,531 @@
-# Bridge of generations: The Polish diaspora in Kazakhstan
-Most pokoleń: diaspora polska w Kazachstanie
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Мост поколений · Most pokoleń</title>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Spectral+SC:wght@300;400&family=IBM+Plex+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#0e0d0b;
+  --bg2:#131210;
+  --bg3:#1c1a17;
+  --line:rgba(255,255,255,0.06);
+  --line2:rgba(255,255,255,0.11);
+  --gold:#c9a96e;
+  --gold2:#e2c07a;
+  --text:#cec9c0;
+  --text2:#7a756d;
+  --text3:#4a4640;
+  --white:#ede9e0;
+  --red:#8b2e2e;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Spectral',serif;font-size:17px;line-height:1.85;overflow-x:hidden;}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:0.5;}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:56px;border-bottom:1px solid var(--line);background:rgba(14,13,11,0.94);backdrop-filter:blur(12px);}
+.nav-brand{font-family:'Spectral SC',serif;font-size:12px;letter-spacing:0.2em;color:var(--gold);}
+.nav-links{display:flex;gap:32px;list-style:none;}
+.nav-links a{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.12em;color:var(--text2);text-decoration:none;text-transform:uppercase;transition:color 0.2s;cursor:pointer;}
+.nav-links a:hover{color:var(--gold);}
+.lang-toggle{display:flex;border:1px solid var(--line2);}
+.lang-btn{background:none;border:none;padding:5px 14px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.1em;color:var(--text2);cursor:pointer;transition:all 0.2s;text-transform:uppercase;}
+.lang-btn.active{background:var(--gold);color:var(--bg);}
+.lang-btn:hover:not(.active){color:var(--gold);}
+
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:72px 48px 80px;position:relative;border-bottom:1px solid var(--line);}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 85% 50%,rgba(201,169,110,0.05) 0%,transparent 65%),radial-gradient(ellipse 40% 60% at 5% 85%,rgba(139,46,46,0.07) 0%,transparent 55%);}
+.hero-meta{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.2em;color:var(--text2);text-transform:uppercase;margin-bottom:36px;opacity:0;animation:up 0.9s ease forwards 0.3s;}
+.hero-flags{display:flex;gap:8px;margin-bottom:28px;align-items:center;opacity:0;animation:up 0.9s ease forwards 0.1s;}
+.flag{width:38px;height:24px;border-radius:1px;flex-shrink:0;}
+.flag-kz{background:#00AFCA;position:relative;}
+.flag-kz::after{content:'✦';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:#FDCC00;font-size:12px;line-height:1;}
+.flag-pl{background:linear-gradient(to bottom,#fff 50%,#DC143C 50%);}
+.flag-sep{width:1px;height:24px;background:var(--line2);}
+.hero-title{font-family:'Spectral',serif;font-weight:300;font-size:clamp(56px,9vw,130px);line-height:0.93;letter-spacing:-0.025em;color:var(--white);opacity:0;animation:up 1.1s ease forwards 0.5s;}
+.hero-title em{font-style:italic;color:var(--gold);}
+.hero-sub{font-family:'Spectral',serif;font-weight:300;font-style:italic;font-size:clamp(15px,1.8vw,19px);color:var(--text2);max-width:520px;margin-top:32px;opacity:0;animation:up 0.9s ease forwards 0.85s;}
+.hero-scroll{position:absolute;right:48px;bottom:80px;display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0;animation:up 0.9s ease forwards 1.2s;}
+.hero-scroll span{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.25em;color:var(--text2);text-transform:uppercase;writing-mode:vertical-lr;}
+.hero-scroll-bar{width:1px;height:64px;background:linear-gradient(to bottom,var(--gold),transparent);}
+
+.facts{display:grid;grid-template-columns:repeat(4,1fr);}
+.fact{padding:44px 36px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);position:relative;}
+.fact:last-child{border-right:none;}
+.fact-num{font-family:'Spectral SC',serif;font-size:clamp(34px,3.8vw,54px);font-weight:300;color:var(--gold);line-height:1;display:block;margin-bottom:12px;}
+.fact-label{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--text2);line-height:1.5;}
+.fact-n{position:absolute;top:16px;right:18px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);}
+
+.section{max-width:1080px;margin:0 auto;padding:96px 48px;}
+.section-head{display:grid;grid-template-columns:180px 1fr;gap:48px;margin-bottom:56px;align-items:start;}
+.section-idx{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text2);letter-spacing:0.15em;line-height:1.7;padding-top:8px;text-transform:uppercase;}
+.section-title{font-family:'Spectral',serif;font-weight:300;font-size:clamp(28px,3.5vw,48px);line-height:1.1;color:var(--white);}
+.section-title em{font-style:italic;color:var(--gold);}
+.body-grid{display:grid;grid-template-columns:180px 1fr;gap:48px;}
+.body-side{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--text3);line-height:1.7;padding-top:4px;}
+.body-text p{margin-bottom:1.5em;color:var(--text);font-size:17px;}
+.body-text p:last-child{margin-bottom:0;}
+
+.divider{border:none;border-top:1px solid var(--line);}
+
+.archive-wrap{margin:32px 0;}
+.arch-btn{width:100%;background:var(--bg2);border:1px solid var(--line2);padding:20px 26px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;transition:border-color 0.25s,background 0.25s;text-align:left;}
+.arch-btn:hover{border-color:var(--gold);background:var(--bg3);}
+.arch-btn-left{display:flex;flex-direction:column;gap:5px;}
+.arch-id{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);}
+.arch-title{font-family:'Spectral',serif;font-size:15px;color:var(--white);}
+.arch-plus{font-size:20px;color:var(--text2);transition:transform 0.3s;line-height:1;font-family:'IBM Plex Mono',monospace;}
+.arch-btn[aria-expanded="true"] .arch-plus{transform:rotate(45deg);color:var(--gold);}
+.arch-body{display:none;border:1px solid var(--line2);border-top:none;background:var(--bg3);padding:34px 38px;}
+.arch-body.open{display:block;}
+.arch-body p{font-style:italic;font-size:15.5px;color:var(--text);line-height:1.85;margin-bottom:14px;}
+.arch-body p:last-child{margin-bottom:0;}
+.arch-src{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--text2);margin-top:22px;padding-top:18px;border-top:1px solid var(--line);}
+
+.testimony{margin:36px 0;padding:36px 38px;background:var(--bg2);border-left:2px solid var(--gold);position:relative;}
+.testimony p{font-style:italic;font-size:16px;color:var(--text);line-height:1.9;margin-bottom:14px;}
+.testimony-cite{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--text2);}
+.testimony-tag{position:absolute;top:-1px;left:0;background:var(--gold);color:var(--bg);font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;padding:4px 12px;}
+
+.author-section{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:112px 48px;text-align:center;}
+.author-inner{max-width:660px;margin:0 auto;}
+.author-inner p{font-family:'Spectral',serif;font-weight:300;font-style:italic;font-size:clamp(18px,2.3vw,25px);line-height:1.75;color:var(--white);}
+.author-sig{margin-top:44px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--text2);}
+
+.closing{padding:100px 48px;text-align:center;}
+.closing-text{font-family:'Spectral',serif;font-weight:300;font-size:clamp(24px,4vw,52px);line-height:1.25;color:var(--white);max-width:780px;margin:0 auto;}
+.closing-text em{font-style:italic;color:var(--gold);}
+
+.sources-section{background:var(--bg2);border-top:1px solid var(--line);padding:80px 48px;}
+.sources-inner{max-width:840px;margin:0 auto;}
+.sources-head{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:var(--text2);margin-bottom:36px;}
+.src-row{display:flex;gap:22px;padding:13px 0;border-bottom:1px solid var(--line);}
+.src-n{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--text3);min-width:18px;padding-top:2px;}
+.src-t{font-size:14px;color:var(--text2);line-height:1.6;}
+
+footer{padding:28px 48px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;}
+.foot-l{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.14em;color:var(--text3);text-transform:uppercase;}
+.foot-r{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text3);}
+
+[data-lang="pl"]{display:none;}
+body.lang-pl [data-lang="ru"]{display:none;}
+body.lang-pl [data-lang="pl"]{display:block;}
+body.lang-pl span[data-lang="pl"]{display:inline;}
+body.lang-pl span[data-lang="ru"]{display:none;}
+span[data-lang="pl"]{display:none;}
+
+.reveal{opacity:0;transform:translateY(18px);transition:opacity 0.7s ease,transform 0.65s ease;}
+.reveal.on{opacity:1;transform:none;}
+
+@keyframes up{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
+
+@media(max-width:800px){
+  nav{padding:0 20px;}
+  .nav-links{display:none;}
+  .hero{padding:72px 22px 60px;}
+  .facts{grid-template-columns:1fr 1fr;}
+  .fact{border-right:none;border-bottom:1px solid var(--line);}
+  .fact:nth-child(odd){border-right:1px solid var(--line);}
+  .section{padding:60px 22px;}
+  .section-head,.body-grid{grid-template-columns:1fr;gap:14px;}
+  .section-idx,.body-side{display:none;}
+  .author-section,.closing{padding:64px 22px;}
+  .sources-section{padding:60px 22px;}
+  footer{padding:22px;flex-direction:column;gap:6px;text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">
+    <span data-lang="ru">Мост поколений</span>
+    <span data-lang="pl">Most pokoleń</span>
+  </div>
+  <ul class="nav-links">
+    <li><a onclick="goTo('s-intro')"><span data-lang="ru">Введение</span><span data-lang="pl">Wstęp</span></a></li>
+    <li><a onclick="goTo('s-history')"><span data-lang="ru">Депортация</span><span data-lang="pl">Deportacja</span></a></li>
+    <li><a onclick="goTo('s-people')"><span data-lang="ru">Люди</span><span data-lang="pl">Ludzie</span></a></li>
+    <li><a onclick="goTo('s-identity')"><span data-lang="ru">Идентичность</span><span data-lang="pl">Tożsamość</span></a></li>
+    <li><a onclick="goTo('s-sources')"><span data-lang="ru">Источники</span><span data-lang="pl">Źródła</span></a></li>
+  </ul>
+  <div class="lang-toggle">
+    <button class="lang-btn active" onclick="setLang('ru')">РУС</button>
+    <button class="lang-btn" onclick="setLang('pl')">POL</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-flags">
+    <div class="flag flag-kz"></div>
+    <div class="flag-sep"></div>
+    <div class="flag flag-pl"></div>
+  </div>
+  <div class="hero-meta">
+    <span data-lang="ru">Исследовательская работа · Конкурс «Мост поколений: Казахстан — Польша» · 2026</span>
+    <span data-lang="pl">Praca badawcza · Konkurs „Most pokoleń: Kazachstan — Polska" · 2026</span>
+  </div>
+  <h1 class="hero-title">
+    <span data-lang="ru">Мост<br><em>поколений</em></span>
+    <span data-lang="pl">Most<br><em>pokoleń</em></span>
+  </h1>
+  <p class="hero-sub" data-lang="ru">Трагедия депортации, стойкость диаспоры и современные межкультурные связи. Личная история семьи из с. Калиновка Тайыншинского района.</p>
+  <p class="hero-sub" data-lang="pl">Tragedia deportacji, wytrwałość diaspory i współczesne więzi międzykulturowe. Osobista historia rodziny ze wsi Kalinówka, rejon Tajnszy.</p>
+  <div class="hero-scroll">
+    <span data-lang="ru">читать</span>
+    <span data-lang="pl">czytaj</span>
+    <div class="hero-scroll-bar"></div>
+  </div>
+</section>
+
+<!-- FACTS -->
+<div class="facts">
+  <div class="fact reveal"><span class="fact-num">1936</span><span class="fact-label" data-lang="ru">Год первой высылки</span><span class="fact-label" data-lang="pl">Rok pierwszej deportacji</span><span class="fact-n">01</span></div>
+  <div class="fact reveal"><span class="fact-num">63 976</span><span class="fact-label" data-lang="ru">Человек выселено</span><span class="fact-label" data-lang="pl">Wysiedlonych osób</span><span class="fact-n">02</span></div>
+  <div class="fact reveal"><span class="fact-num">~39 000</span><span class="fact-label" data-lang="ru">Погибло от болезней и голода</span><span class="fact-label" data-lang="pl">Zmarło z głodu i chorób</span><span class="fact-n">03</span></div>
+  <div class="fact reveal"><span class="fact-num">66%</span><span class="fact-label" data-lang="ru">Поляков в Калиновке сегодня</span><span class="fact-label" data-lang="pl">Polaków w Kalinówce dziś</span><span class="fact-n">04</span></div>
+</div>
+
+<hr class="divider">
+
+<!-- ВВЕДЕНИЕ -->
+<div id="s-intro">
+  <div class="section reveal" data-lang="ru">
+    <div class="section-head">
+      <div class="section-idx">§ 01<br>Введение</div>
+      <h2 class="section-title">История, которая<br>началась не <em>с выбора</em></h2>
+    </div>
+    <div class="body-grid">
+      <div class="body-side">Северо-<br>Казахстанская<br>область<br><br>с. Калиновка<br>Тайыншинский<br>район</div>
+      <div class="body-text">
+        <p>С раннего детства я знаю трагическую историю своего народа — причину, по которой польский народ проживает в Казахстане. Моя семья была выселена из Житомирской области в 1936 году и стала частью первого потока польских депортированных, осевших в Тайыншинском районе Северо-Казахстанской области.</p>
+        <p>Наше село Калиновка возникло на месте так называемой «первой точки», изначально носившей название «Чёрный пахарь». По сей день из 827 жителей 66% составляют поляки — живое свидетельство того, что депортация не уничтожила народ, а создала на казахстанской земле новую его общину.</p>
+        <p>История эта начиналась не с выбора, не с поиска лучшей доли — а с вагонов-теплушек, с плача детей и молитв на чужом языке под бескрайним казахским небом. Однако она не заканчивается трагедией: она продолжается стойкостью, памятью и мостом, который поколение за поколением возводится между двумя народами.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section reveal" data-lang="pl">
+    <div class="section-head">
+      <div class="section-idx">§ 01<br>Wstęp</div>
+      <h2 class="section-title">Historia, która<br>nie zaczęła się <em>z wyboru</em></h2>
+    </div>
+    <div class="body-grid">
+      <div class="body-side">Obwód<br>północno-<br>kazachstański<br><br>wieś Kalinówka<br>rejon Tajnszy</div>
+      <div class="body-text">
+        <p>Od wczesnego dzieciństwa znam tragiczną historię mojego narodu — powód, dla którego Polacy mieszkają w Kazachstanie. Moja rodzina została wysiedlona z obwodu żytomierskiego w 1936 roku i stała się częścią pierwszej fali polskich deportowanych, osiedlonych w rejonie Tajnszy w obwodzie północnokazachstańskim.</p>
+        <p>Nasza wioska Kalinówka powstała w miejscu tak zwanego „pierwszego punktu", pierwotnie noszącego nazwę „Czarny Oracz". Do dziś spośród 827 mieszkańców 66% stanowią Polacy — żywe świadectwo tego, że deportacja nie zniszczyła narodu, lecz stworzyła na kazachstańskiej ziemi nową jego wspólnotę.</p>
+        <p>Ta historia nie zaczęła się z wyboru — lecz od wagonów bydlęcych, płaczu dzieci i modlitw w obcym języku pod bezkresnym kazachskim niebem. Ale nie kończy się tragedią: trwa wytrwałością, pamięcią i mostem, który pokolenie po pokoleniu buduje się między dwoma narodami.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ДЕПОРТАЦИЯ -->
+<div id="s-history">
+  <div class="section reveal" data-lang="ru">
+    <div class="section-head">
+      <div class="section-idx">§ 02<br>Депортация</div>
+      <h2 class="section-title">Политика, ставшая<br><em>приговором</em></h2>
+    </div>
+    <div class="body-grid">
+      <div class="body-side">28 апреля<br>1936 г.<br><br>Постановление<br>СНК СССР</div>
+      <div class="body-text">
+        <p>28 апреля 1936 года постановлением СНК СССР 35 820 «политически неблагонадёжных поляков» из Украинской ССР были подвергнуты принудительному переселению в Казахскую ССР. Официальная формулировка говорила о «предотвращении этнических конфликтов». Подлинная цель, установленная историками по советским архивам, — уничтожение зажиточных крестьянских хозяйств.</p>
+        <p>3 июня 1936 года на станцию Тайнша прибыл первый эшелон. За 21 день прибыло 40 эшелонов по 600–900 человек. Было создано 13 новых поселений — «точек». Наша Калиновка была первой из них. В 1937–1938 годах под подозрением в шпионаже находились 102 000 поляков. Реальных агентов, по данным Варшавского архива, — около 200 человек.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section reveal" data-lang="pl">
+    <div class="section-head">
+      <div class="section-idx">§ 02<br>Deportacja</div>
+      <h2 class="section-title">Polityka, która<br>stała się <em>wyrokiem</em></h2>
+    </div>
+    <div class="body-grid">
+      <div class="body-side">28 kwietnia<br>1936 r.<br><br>Postanowienie<br>RKL ZSRR</div>
+      <div class="body-text">
+        <p>28 kwietnia 1936 roku postanowieniem RKL ZSRR 35 820 „politycznie niewiarygodnych Polaków" z Ukraińskiej SRR poddano przymusowemu przesiedleniu do Kazachskiej SRR. Oficjalne uzasadnienie mówiło o „zapobieganiu konfliktom etnicznym". Prawdziwy cel: zniszczenie klasy zamożnych chłopów.</p>
+        <p>3 czerwca 1936 roku na stację Tajnsza przybył pierwszy transport. W 21 dni — 40 transportów po 600–900 osób. Utworzono 13 nowych osiedli — „punktów". Nasza Kalinówka była pierwszym z nich.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ARCHIVE DOCUMENTS -->
+  <div class="section reveal" style="padding-top:0;" data-lang="ru">
+    <div class="body-grid">
+      <div class="body-side">Архивные<br>документы</div>
+      <div class="body-text">
+        <div class="archive-wrap">
+          <button class="arch-btn" onclick="toggleDoc(this)" aria-expanded="false">
+            <div class="arch-btn-left">
+              <span class="arch-id">ДОК — 001 · 28.04.1936</span>
+              <span class="arch-title">Постановление СНК СССР о переселении</span>
+            </div>
+            <span class="arch-plus">+</span>
+          </button>
+          <div class="arch-body">
+            <p>Возложить на НКВД СССР переселение и организацию поселений в Карагандинской области Казахской АССР для польских и немецких хозяйств, переселяемых из УССР в количестве 15 000 хозяйств — 45 000 человек по типу существующих сельскохозяйственных трудпосёлков НКВД.</p>
+            <p>Переселяемый контингент не ограничивается в гражданских правах и имеет право передвижения в пределах административного района расселения, но не имеет права выезда из мест поселений.</p>
+            <div class="arch-src">— Постановление СНК СССР от 28 апреля 1936 г.</div>
+          </div>
+        </div>
+
+        <div class="archive-wrap">
+          <button class="arch-btn" onclick="toggleDoc(this)" aria-expanded="false">
+            <div class="arch-btn-left">
+              <span class="arch-id">ДОК — 002 · Письмо Володзько</span>
+              <span class="arch-title">Рапорт майора госбезопасности в НКВД КазССР</span>
+            </div>
+            <span class="arch-plus">+</span>
+          </button>
+          <div class="arch-body">
+            <p>Медицинская помощь недостаточна и качественно неудовлетворительна. Сеть медучреждений медработниками не укомплектована... Сеть школ и политпросветучреждений полностью не обеспечена ассигнованиями на их содержание и, кроме того, не обеспечена нужными кадрами.</p>
+            <p>Не лучше обстоит дело в старых посёлках Осакаровского, Тельманского районов Карагандинской области, где из-за отсутствия ассигнований власти встали перед необходимостью закрытия интернатов, роспуска учащихся и учителей... Польские и немецкие школы не снабжены учебниками на родном языке.</p>
+            <div class="arch-src">— Из письма майора госбезопасности Володзько в НКВД КазССР</div>
+          </div>
+        </div>
+
+        <div class="archive-wrap">
+          <button class="arch-btn" onclick="toggleDoc(this)" aria-expanded="false">
+            <div class="arch-btn-left">
+              <span class="arch-id">ДОК — 003 · 02.02.1956</span>
+              <span class="arch-title">Постановление о снятии статуса спецпереселенцев</span>
+            </div>
+            <span class="arch-plus">+</span>
+          </button>
+          <div class="arch-body">
+            <p>Снятие ограничений по спецпоселению не влечёт за собой возвращение имущества, конфискованного при выселении, они не имеют права возвратиться в места, откуда они были выселены.</p>
+            <div class="arch-src">— Постановление от 2 февраля 1956 г.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section reveal" style="padding-top:0;" data-lang="pl">
+    <div class="body-grid">
+      <div class="body-side">Dokumenty<br>archiwalne</div>
+      <div class="body-text">
+        <div class="archive-wrap">
+          <button class="arch-btn" onclick="toggleDoc(this)" aria-expanded="false">
+            <div class="arch-btn-left">
+              <span class="arch-id">DOK — 001 · 28.04.1936</span>
+              <span class="arch-title">Postanowienie RKL ZSRR o przesiedleniu</span>
+            </div>
+            <span class="arch-plus">+</span>
+          </button>
+          <div class="arch-body">
+            <p>Zobowiązać NKWD ZSRR do przesiedlenia i organizacji osiedli w obwodzie karagandyjskim Kazachskiej ASRR dla gospodarstw polskich i niemieckich, przesiedlanych z USRR w liczbie 15 000 gospodarstw — 45 000 osób na wzór istniejących rolniczych osiedli pracy NKWD.</p>
+            <p>Przesiedlany kontyngent nie jest ograniczony w prawach obywatelskich i ma prawo poruszania się w granicach przydzielonego rejonu, lecz nie ma prawa opuszczania miejsc osiedlenia.</p>
+            <div class="arch-src">— Postanowienie RKL ZSRR z 28 kwietnia 1936 r.</div>
+          </div>
+        </div>
+
+        <div class="archive-wrap">
+          <button class="arch-btn" onclick="toggleDoc(this)" aria-expanded="false">
+            <div class="arch-btn-left">
+              <span class="arch-id">DOK — 002 · List Wołodźko</span>
+              <span class="arch-title">Raport majora bezpieczeństwa do NKWD Kazachskiej SRR</span>
+            </div>
+            <span class="arch-plus">+</span>
+          </button>
+          <div class="arch-body">
+            <p>Opieka medyczna jest niewystarczająca i jakościowo niezadowalająca. Sieć placówek medycznych nie jest obsadzona pracownikami... Polskie i niemieckie szkoły nie są zaopatrzone w podręczniki w języku ojczystym.</p>
+            <div class="arch-src">— Z listu majora Wołodźko do NKWD Kazachskiej SRR</div>
+          </div>
+        </div>
+
+        <div class="archive-wrap">
+          <button class="arch-btn" onclick="toggleDoc(this)" aria-expanded="false">
+            <div class="arch-btn-left">
+              <span class="arch-id">DOK — 003 · 02.02.1956</span>
+              <span class="arch-title">Postanowienie o zniesieniu statusu przesiedleńców</span>
+            </div>
+            <span class="arch-plus">+</span>
+          </button>
+          <div class="arch-body">
+            <p>Zniesienie ograniczeń w zakresie specjalnego osiedlenia nie pociąga za sobą zwrotu mienia skonfiskowanego podczas wysiedlenia, nie mają oni prawa powrotu do miejsc, skąd zostali wysiedleni.</p>
+            <div class="arch-src">— Postanowienie z 2 lutego 1956 r.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ЛЮДИ -->
+<div id="s-people">
+  <div class="section reveal" data-lang="ru">
+    <div class="section-head">
+      <div class="section-idx">§ 03<br>Люди</div>
+      <h2 class="section-title">Солидарность<br><em>в трагедии</em></h2>
+    </div>
+    <div class="body-grid">
+      <div class="body-side">Калиновка<br>и Каараагаш<br><br>Два народа.<br>Одна земля.</div>
+      <div class="body-text">
+        <p>К моменту прибытия польских эшелонов казахский народ сам только недавно пережил катастрофу Ашаршылыка — голода 1932–1933 годов, унёсшего более миллиона жизней. Тем не менее архивные документы фиксируют факты подлинного сострадания: в одном из колхозов Кустанайской области «ссыльным устроили такую радушную встречу, что отдали им дневной удой молока с фермы, так что даже дети колхозников остались без молока».</p>
+        <p>В этом взаимодействии Калиновки и аула Каараагаш воплощается то, что мы называем «мостом поколений»: два народа, два разных трагических опыта, одна земля и выбор — не государственный, а человеческий — не дать другому умереть. Лингвистический след этого соседства жив до сих пор: казахский сосед называет своих стариков «бабця» и «дидо».</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section reveal" data-lang="pl">
+    <div class="section-head">
+      <div class="section-idx">§ 03<br>Ludzie</div>
+      <h2 class="section-title">Solidarność<br><em>w tragedii</em></h2>
+    </div>
+    <div class="body-grid">
+      <div class="body-side">Kalinówka<br>i Karaagasz<br><br>Dwa narody.<br>Jedna ziemia.</div>
+      <div class="body-text">
+        <p>W chwili przybycia polskich transportów naród kazachski sam dopiero co przeżył Aszarszałyk — głód z lat 1932–1933, który pochłonął ponad milion istnień. Mimo to dokumenty archiwalne rejestrują fakty prawdziwego współczucia: deportowanym urządzono tak serdeczne przyjęcie, że oddano im dzienny udój mleka z farmy.</p>
+        <p>W relacji Kalinówki i aułu Karaagasz ucieleśnia się to, co nazywamy „mostem pokoleń": dwa narody, dwa różne tragiczne doświadczenia, jedna ziemia i wybór — nie państwowy, lecz ludzki — nie pozwolić drugiemu umrzeć.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section reveal" style="padding-top:0;" data-lang="ru">
+    <div class="body-grid">
+      <div class="body-side">Живое<br>свидетельство</div>
+      <div class="body-text">
+        <div class="testimony">
+          <div class="testimony-tag">Устное свидетельство · Тайыншинский район</div>
+          <p>Мы, казахи, делились последним, помогая всем, кого выслали! Я жил один казах в немецко-польском селе. И это у себя, в Казахстане. Соседи всегда рассказывали, как их приютили казахи. Как наши деды привозили мясо, молоко, кумыс. А немцы-поляки давали картошку. Мои дети родились в этом селе. Мы до сих пор ездим туда. Уходят наши соседи... (бабця, дидо...) мои так и говорят до сих пор.</p>
+          <span class="testimony-cite">— Житель Тайыншинского района, казах по национальности</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section reveal" style="padding-top:0;" data-lang="pl">
+    <div class="body-grid">
+      <div class="body-side">Żywe<br>świadectwo</div>
+      <div class="body-text">
+        <div class="testimony">
+          <div class="testimony-tag">Świadectwo ustne · rejon Tajnszy</div>
+          <p>My, Kazachowie, dzieliliśmy się ostatnim, pomagając wszystkim wysiedlonym! Byłem jedynym Kazachem w polsko-niemieckiej wiosce. Sąsiedzi zawsze opowiadali, jak Kazachowie ich przyjęli. Jak nasi dziadkowie przywozili mięso, mleko, kumys. A Niemcy-Polacy dawali ziemniaki. Moje dzieci urodziły się w tej wiosce. Jeździmy tam do dziś. Odchodzą nasi sąsiedzi... (babcia, dziadek...) moi tak mówią do dziś.</p>
+          <span class="testimony-cite">— Mieszkaniec rejonu Tajnszy, Kazach</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ИДЕНТИЧНОСТЬ -->
+<div id="s-identity">
+  <div class="section reveal" data-lang="ru">
+    <div class="section-head">
+      <div class="section-idx">§ 04<br>Идентичность</div>
+      <h2 class="section-title">Народ существует,<br>пока жив <em>его язык</em></h2>
+    </div>
+    <div class="body-grid">
+      <div class="body-side">Постпамять<br><br>M. Hirsch<br>2012</div>
+      <div class="body-text">
+        <p>В условиях официального запрета польского языка в школах семьи выработали особые стратегии культурной преемственности. Язык сохранялся в домашнем пространстве: бабушки рассказывали польские сказки, хранили молитвы, передавали традиции Рождества и Пасхи — в тайне, по-домашнему.</p>
+        <p>Что Калиновка с 66-процентным польским населением существует сегодня — это не случайность, а результат географической концентрации переселенцев в 13 «точках», семейных и общинных связей, сохранения католической идентичности как стержня народной жизни.</p>
+        <p>Опыт польской диаспоры хорошо описывается концепцией «постпамяти» Marianne Hirsch: дети и внуки тех, кто пережил травму, наследуют воспоминания, которые они сами не пережили, и несут их как собственные. Польская идентичность казахстанского происхождения — это идентичность постпамяти, выкованная через поколения: через истории о первой зиме в степи, о молоке из Каараагаша.</p>
+        <p>С обретением Казахстаном независимости в 1991 году открылись новые возможности для культурного самовыражения диаспоры. Польша стала одной из первых европейских стран, признавших суверенитет Казахстана. Этот политический жест имел особое символическое значение для потомков депортированных.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section reveal" data-lang="pl">
+    <div class="section-head">
+      <div class="section-idx">§ 04<br>Tożsamość</div>
+      <h2 class="section-title">Naród istnieje,<br>dopóki żyje <em>jego język</em></h2>
+    </div>
+    <div class="body-grid">
+      <div class="body-side">Postpamięć<br><br>M. Hirsch<br>2012</div>
+      <div class="body-text">
+        <p>W warunkach oficjalnego zakazu języka polskiego w szkołach rodziny wypracowały szczególne strategie ciągłości kulturowej. Język zachowywał się w przestrzeni domowej: babcie opowiadały bajki, przechowywały modlitwy, przekazywały tradycje Bożego Narodzenia i Wielkanocy — potajemnie, po domowemu.</p>
+        <p>Fakt, że Kalinówka z 66-procentową polską ludnością istnieje dziś, to wynik geograficznej koncentracji przesiedleńców w 13 „punktach", więzów rodzinnych oraz zachowania tożsamości katolickiej jako osi życia narodowego.</p>
+        <p>Doświadczenie polskiej diaspory dobrze opisuje koncepcja „postpamięci" Marianne Hirsch: dzieci i wnuki tych, którzy przeżyli traumę, dziedziczą wspomnienia, których sami nie przeżyli, i noszą je jak własne. Polska tożsamość kazachstańskiego pochodzenia to tożsamość postpamięci.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- АВТОР -->
+<div class="author-section">
+  <div class="author-inner reveal" data-lang="ru">
+    <p>Я никогда не была равнодушна к истории своего народа и к сохранению польской культурной идентичности — это часть меня с самого детства. Когда в 2025 году я переехала в Кокшетау, одним из первых решений стало пойти в Дом дружбы и начать изучать родной язык, потому что для меня это не просто учёба, а личный ответ на всё то, о чём написана эта работа. Народ существует пока существует его язык, и я счастлива, что могу вносить свой маленький вклад в его сохранение.</p>
+    <div class="author-sig">— Автор · Кокшетау, Казахстан · 2026</div>
+  </div>
+  <div class="author-inner reveal" data-lang="pl">
+    <p>Nigdy nie byłam obojętna na historię mojego narodu i na zachowanie polskiej tożsamości kulturowej — to część mnie od samego dzieciństwa. Kiedy w 2025 roku przeprowadziłam się do Kokszetau, jedną z pierwszych decyzji było pójście do Domu Przyjaźni i rozpoczęcie nauki języka ojczystego — bo to dla mnie nie tylko nauka, lecz osobista odpowiedź na wszystko, o czym traktuje ta praca. Naród istnieje, dopóki istnieje jego język.</p>
+    <div class="author-sig">— Autorka · Kokszetau, Kazachstan · 2026</div>
+  </div>
+</div>
+
+<!-- CLOSING -->
+<div class="closing reveal">
+  <p class="closing-text" data-lang="ru">Теперь я понимаю: именно потому,<br>что я её знаю — <em>она продолжается.</em></p>
+  <p class="closing-text" data-lang="pl">Teraz rozumiem: właśnie dlatego,<br>że ją znam — <em>ona trwa.</em></p>
+</div>
+
+<hr class="divider">
+
+<!-- SOURCES -->
+<div class="sources-section" id="s-sources">
+  <div class="sources-inner">
+    <div class="sources-head" data-lang="ru" style="display:block;">Список источников</div>
+    <div class="sources-head" data-lang="pl" style="display:none;">Lista źródeł</div>
+    <div class="src-row reveal"><span class="src-n">1</span><span class="src-t">Депортация. Поляки Казахской ССР / сост. Славецкий В.Ю. — Тайыншинский район, Северо-Казахстанская область. Включает личные свидетельства жителей сёл Калиновка и Чкалово.</span></div>
+    <div class="src-row reveal"><span class="src-n">2</span><span class="src-t">Славецкий В.Ю. Депортация поляков в Казахскую ССР: исторический очерк. — Архивный документ. — Тайыншинский район.</span></div>
+    <div class="src-row reveal"><span class="src-n">3</span><span class="src-t">Постановление СНК СССР от 28 апреля 1936 г. о переселении польских и немецких хозяйств из УССР // Сборник нормативных актов о репрессиях и реабилитации жертв политических репрессий. М., 1993.</span></div>
+    <div class="src-row reveal"><span class="src-n">4</span><span class="src-t">Письмо майора госбезопасности Володзько в НКВД Казахской ССР об условиях содержания спецпереселенцев. — Архивный документ.</span></div>
+    <div class="src-row reveal"><span class="src-n">5</span><span class="src-t">Постановление СНК СССР «О правовом положении спецпереселенцев» от 8 января 1945 г.</span></div>
+    <div class="src-row reveal"><span class="src-n">6</span><span class="src-t">Постановление о снятии ограничений по спецпоселению с поляков от 2 февраля 1956 г.</span></div>
+    <div class="src-row reveal"><span class="src-n">7</span><span class="src-t">Hirsch M. The Generation of Postmemory. — New York: Columbia University Press, 2012.</span></div>
+    <div class="src-row reveal"><span class="src-n">8</span><span class="src-t">Martin T. The Affirmative Action Empire. — Ithaca: Cornell University Press, 2001.</span></div>
+    <div class="src-row reveal"><span class="src-n">9</span><span class="src-t">Pohl J.O. The Stalinist Penal System. — Jefferson: McFarland, 1997.</span></div>
+    <div class="src-row reveal"><span class="src-n">10</span><span class="src-t">Устные свидетельства жителей с. Калиновка и Тайыншинского района СКО, собранные автором.</span></div>
+  </div>
+</div>
+
+<footer>
+  <span class="foot-l">Мост поколений · Most pokoleń · Казахстан — Польша</span>
+  <span class="foot-r">2026</span>
+</footer>
+
+<script>
+function setLang(lang) {
+  document.body.classList.toggle('lang-pl', lang === 'pl');
+  document.querySelectorAll('.lang-btn').forEach((b, i) => {
+    b.classList.toggle('active', (lang === 'ru' && i === 0) || (lang === 'pl' && i === 1));
+  });
+  document.querySelectorAll('.sources-head[data-lang]').forEach(el => {
+    el.style.display = el.dataset.lang === lang ? 'block' : 'none';
+  });
+}
+
+function goTo(id) {
+  document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+}
+
+function toggleDoc(btn) {
+  const body = btn.nextElementSibling;
+  const isOpen = body.classList.toggle('open');
+  btn.setAttribute('aria-expanded', isOpen);
+}
+
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('on'); });
+}, { threshold: 0.07 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
